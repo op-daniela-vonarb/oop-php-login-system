@@ -26,4 +26,15 @@ class SignupContr {
         return $result;
     }
 
+    private function invalidUid() {
+        $result;
+        if(!preg_match("/^[a-zA-Z0-9]*$/", $this->$uid)) {
+            $result = false;
+        }
+        else {
+            $result = true;
+        }
+        return $result;
+    }
+
 }
