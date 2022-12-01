@@ -13,7 +13,17 @@ class SignupContr {
         $this->$pwd = $apwd;
         $this->$pwdrepeat = $apwdrepeat;
         $this->$email = $aemail;
+    }
 
+    private function emptyInput() {
+        $result;
+        if(empty($this->$uid) || empty($this->$pwd) || empty($this->$pwdrepeat) || empty($this->$email)) {
+            $result = false;
+        }
+        else {
+            $result = true;
+        }
+        return $result;
     }
 
 }

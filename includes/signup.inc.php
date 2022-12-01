@@ -9,6 +9,10 @@ if(isset($_POST["submit"]))
     $email = $_POST["email"];
 
     // Instantiate SingupContr class
+    include "../classes/signup.classes.php";
+    include "../classes/signup-contr.classes.php";
+
+    $signup = new SignupContr($auid, $apwd, $apwdrepeat, $aemail);
 
     // Running error handlers and user signup
 
