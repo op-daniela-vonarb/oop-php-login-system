@@ -48,4 +48,15 @@ class SignupContr {
         return $result;
     }
 
+    private function pwdMatch() {
+        $result;
+        if($this->pwd !== $this->pwdrepeat) {
+            $result = false;
+        }
+        else {
+            $result = true;
+        }
+        return $result;
+    }
+
 }
