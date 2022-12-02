@@ -1,7 +1,7 @@
 <?php
 
 
-class LoginContr extends Signup {
+class LoginContr extends Login {
 
     private $uid;
     private $pwd;
