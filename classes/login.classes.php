@@ -3,7 +3,7 @@
 
 class Login extends Dbh {
 
-    protected function setUser($uid, $pwd) {
+    protected function getUser($uid, $pwd) {
         $stmt = $this->connect()->prepare('SELECT users_pwd FROM users WHERE users_uid = ? OR users_email = ?;');
 
         if(!$stmt->execute(array($uid, $pwd))) {
@@ -18,7 +18,7 @@ class Login extends Dbh {
             exit();
         }
 
-        $pwdHashed = $stamt->fetchAll(PDO::FETCH_ASSOC);
+        $pwdHashed = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $checkPwd = password_verify($pwd, $pwdHashed[0]["users_pwd"]);
 
         if($checkPwd == false) {
@@ -41,7 +41,7 @@ class Login extends Dbh {
                 exit();
             }
 
-            $user = $stmt->fetchAll(POD::FETCH_ASSOC);
+            $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             session_start();
             $_SESSION["userid"] = $user[0]["users_id"];
