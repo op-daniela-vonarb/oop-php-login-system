@@ -23,7 +23,7 @@ class LoginContr extends Login {
     }
 
     private function emptyInput() {
-        $result;
+        $result = '';
         if(empty($this->uid) || empty($this->pwd)) {
             $result = false;
         }
