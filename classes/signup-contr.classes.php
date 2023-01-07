@@ -3,12 +3,14 @@
 
 class SignupContr extends Signup {
 
+    private $name;
     private $uid;
     private $pwd;
     private $pwdrepeat;
     private $email;
 
-    public function __construct($uid, $pwd, $pwdrepeat, $email) {
+    public function __construct($name, $uid, $pwd, $pwdrepeat, $email) {
+        $this->name = $name;
         $this->uid = $uid;
         $this->pwd = $pwd;
         $this->pwdrepeat = $pwdrepeat;
@@ -42,13 +44,13 @@ class SignupContr extends Signup {
             exit();
         }
 
-        $this->setUser($this->uid, $this->pwd, $this->email);
+        $this->setUser($this->name, $this->uid, $this->pwd, $this->email);
 
     }
 
     private function emptyInput() {
         $result;
-        if(empty($this->uid) || empty($this->pwd) || empty($this->pwdrepeat) || empty($this->email)) {
+        if(empty($this->name || $this->uid) || empty($this->pwd) || empty($this->pwdrepeat) || empty($this->email)) {
             $result = false;
         }
         else {
