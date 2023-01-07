@@ -27,7 +27,7 @@ class Signup extends Dbh {
             exit();
 
         }
-        $resultCheck;
+        $resultCheck = '';
         if($stmt->rowCount() > 0) {
             $resultCheck = false;
         }
@@ -35,6 +35,26 @@ class Signup extends Dbh {
             $resultCheck = true;
         }
         return $resultCheck;
+    }
+
+    protected function getUserId($uid) {
+        $stmt = $this->connect()->prepare('SELECT usersId FROM users WHERE usersUid = ?;');
+
+        if(!$stmt->execute(array($uid))) {
+            $stmt = null;
+            header("location: profile.php?error=stmtfailed");
+            exit();
+        }
+
+        if($stmt->rowCount() == 0) {
+            $stmt = null;
+            header("location: profile.php?error=profilenotfound");
+            exit();
+        }
+
+        $profileData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $profileData;
 
     }
 

@@ -49,7 +49,7 @@ class SignupContr extends Signup {
     }
 
     private function emptyInput() {
-        $result;
+        $result = '';
         if(empty($this->name || $this->uid) || empty($this->pwd) || empty($this->pwdrepeat) || empty($this->email)) {
             $result = false;
         }
@@ -60,7 +60,7 @@ class SignupContr extends Signup {
     }
 
     private function invalidUid() {
-        $result;
+        $result = '';
         if(!preg_match("/^[a-zA-Z0-9]*$/", $this->uid)) {
             $result = false;
         }
@@ -71,7 +71,7 @@ class SignupContr extends Signup {
     }
 
     private function invalidEmail() {
-        $result;
+        $result = '';
         if(!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
             $result = false;
         }
@@ -82,7 +82,7 @@ class SignupContr extends Signup {
     }
 
     private function pwdMatch() {
-        $result;
+        $result = '';
         if($this->pwd !== $this->pwdrepeat) {
             $result = false;
         }
@@ -93,7 +93,7 @@ class SignupContr extends Signup {
     }
 
     private function uidTakenCheck() {
-        $result;
+        $result = '';
         if(!$this->checkUser($this->uid, $this->email)) {
             $result = false;
         }
@@ -101,6 +101,11 @@ class SignupContr extends Signup {
             $result = true;
         }
         return $result;
+    }
+
+    public function fetchUserId($uid) {
+        $userId = $this->getUserId($uid);
+        return $userId[0]["usersId"];
     }
 
 }
